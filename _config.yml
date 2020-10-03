@@ -20,7 +20,7 @@ teaser                   : # path of fallback teaser image, e.g. "/assets/images
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
+  provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
   disqus:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -30,30 +30,23 @@ comments:
     appid                :
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
-staticman:
-  allowedFields          : # ['name', 'email', 'url', 'message']
-  branch                 : # "master"
-  commitMessage          : # "New comment."
-  filename               : # comment-{@timestamp}
-  format                 : # "yml"
-  moderation             : # true
-  path                   : # "/_data/comments/{options.slug}" (default)
-  requiredFields         : # ['name', 'email', 'message']
-  transforms:
-    email                : # "md5"
-  generatedFields:
-    date:
-      type               : # "date"
-      options:
-        format           : # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
-reCaptcha:
-  siteKey                :
-  secret                 :
-atom_feed:
-  path                   : # blank (default) uses feed.xml
-search                   : # true, false (default)
+  utterances:
+    theme                : # "github-light" (default), "github-dark"
+    issue_term           : # "pathname" (default)
+  staticman:
+    branch               : # "master"
+    endpoint             : # "https://{your Staticman v3 API}/v3/entry/github/"
+search                   : false # true, false (default)
 search_full_content      : # true, false (default)
-
+search_provider          : # lunr (default), algolia, google
+algolia:
+  application_id         : # YOUR_APPLICATION_ID
+  index_name             : # YOUR_INDEX_NAME
+  search_only_api_key    : # YOUR_SEARCH_ONLY_API_KEY
+  powered_by             : # true (default), false
+google:
+  search_engine_id       : # YOUR_SEARCH_ENGINE_ID
+  instant_search         : # false (default), true
 # SEO Related
 google_site_verification :
 bing_site_verification   :
@@ -80,50 +73,64 @@ analytics:
   provider               : false # false (default), "google", "google-universal", "custom"
   google:
     tracking_id          :
+    anonymize_ip         : # true, false (default)
 
 
-# Site Author
+# Site Author, this is the default
 author:
-  name             : "唐文杰"
-  avatar           : "/images/avatar.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "湘信大 网络安全空间学院"
-  location         : "湖南 永州"
-  email            :
-  uri              :
-  home             : # null (default), "absolute or relative url to link to author home"
-  bitbucket        :
-  codepen          :
-  dribbble         :
-  flickr           :
-  facebook         :
-  foursquare       :
-  github           : "tangwenjie233"
-  gitlab           :
-  google_plus      :
-  keybase          :
-  instagram        :
-  lastfm           :
-  linkedin         : "dataoptimal" # "john-doe-12345678" (the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
-  pinterest        :
-  soundcloud       :
-  stackoverflow    : # "123456/username" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)
-  steam            : # "steamId" (the last part of your profile url, e.g. https://steamcommunity.com/id/steamId/)
-  tumblr           :
-  twitter          :
-  vine             :
-  weibo            :
-  xing             :
-  youtube          : # "https://youtube.com/c/MichaelRoseDesign"
+  name             : "USTCLUG"
+  avatar           : "https://secure.gravatar.com/avatar/94c03bc620ea2cf7dc239ac0535cad8e?s=256&d=identicon&r=g"
+  bio              : "中国科学技术大学 Linux 用户协会"
+  location         : "USTC"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      # url: "mailto:your.name@email.com"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      # url: "https://your-website.com"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      # url: "https://twitter.com/"
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      # url: "https://facebook.com/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      # url: "https://github.com/"
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      # url: "https://instagram.com/"
+
+# Site Footer
+footer:
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      # url:
+    - label: "Facebook"
+      icon: "fab fa-fw fa-facebook-square"
+      # url:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/ustclug"
+    - label: "GitLab"
+      icon: "fab fa-fw fa-gitlab"
+      # url:
+    - label: "Bitbucket"
+      icon: "fab fa-fw fa-bitbucket"
+      # url:
+    - label: "Instagram"
+      icon: "fab fa-fw fa-instagram"
+      # url:
 
 
 # Reading Files
-include:
-  - .htaccess
-  - _pages
+include: ["_pages"]
 exclude:
+  - ".git-metadata"
   - "*.sublime-project"
   - "*.sublime-workspace"
-  - vendor
   - .asset-cache
   - .bundle
   - .jekyll-assets-cache
@@ -131,24 +138,19 @@ exclude:
   - assets/js/plugins
   - assets/js/_main.js
   - assets/js/vendor
-  - Capfile
-  - CHANGELOG
-  - config
   - Gemfile
-  - Gruntfile.js
-  - gulpfile.js
+  - Gemfile.lock
   - LICENSE
   - log
   - node_modules
   - package.json
-  - Rakefile
+  - package-lock.json
   - README
+  - _scripts
   - tmp
-  - /docs # ignore Minimal Mistakes /docs
-  - /test # ignore Minimal Mistakes /test
+  - vendor
 keep_files:
   - .git
-  - .svn
 encoding: "utf-8"
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
@@ -176,31 +178,49 @@ kramdown:
 # Sass/SCSS
 sass:
   sass_dir: _sass
-  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 
 
 # Outputting
-permalink: /:categories/:title/
-paginate: 5 # amount of posts to show
-paginate_path: /page:num/
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+permalink: /:categories/:year/:month/:title/
+pagination: # jekyll-paginate-v2 settings
+  enabled: true
+  per_page: 5
+  permalink: '/:num/'
+  title: ':title - :num / :max'
+  sort_field: date
+  sort_reverse: true
+  trail:
+    before: 2
+    after: 2
+timezone: "Asia/Shanghai" # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
-# Plugins (previously gems:)
-plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-  - jemoji
+collections_dir: pages
+collections:
+  wiki:
+    output: true
+    permalink: /:collection/:path/
+  news:
+    output: true
+    permalink: /:collection/:year/:month/:title/
+  planet:
+    output: true
+    permalink: /:collection/:year/:month/:title/
 
-# mimic GitHub Pages with --safe
-whitelist:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-  - jemoji
+
+relative_links:
+  collections: true
+titles_from_headings:
+  strip_title: true
+  collections: true
+optional_front_matter:
+  remove_originals: true
+footer_scripts: [/assets/js/main.min.js]
+
+
+feed:
+  collections: [news, planet]
 
 
 # Archives
@@ -211,33 +231,23 @@ whitelist:
 #  - Archive page should exist at path when using Liquid method or you can
 #    expect broken links (especially with breadcrumbs enabled)
 #  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
-#  - <base_path/categories/my-awesome-category/index.html ~> path: /categories/
-#  - <base_path/my-awesome-category/index.html ~> path: /
+#  - <base_path>/categories/my-awesome-category/index.html ~> path: /categories/
+#  - <base_path>/my-awesome-category/index.html ~> path: /
 category_archive:
-  type: liquid
+  type: jekyll-archives
   path: /categories/
 tag_archive:
-  type: liquid
+  type: jekyll-archives
   path: /tags/
 # https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
-
-
-# HTML Compression
-# - http://jch.penibelst.de/
-compress_html:
-  clippings: all
-  ignore:
-    envs: development
+jekyll-archives:
+  enabled: [categories, tags]
+  layout: archive-taxonomy
+  layouts: {}
+  permalinks:
+    year: /year/:year/
+    category: /categories/:name/
+    tag: /tags/:name/
 
 
 # Defaults
@@ -245,19 +255,40 @@ defaults:
   # _posts
   - scope:
       path: ""
-      type: posts
     values:
       layout: single
-      author_profile: true
-      read_time: true
-      comments: # true
+      toc: true
+      toc_sticky: true
+      toc_label: 目录
       share: true
       related: true
-
-  # _pages
+      header:
+        show_overlay_excerpt: false
   - scope:
       path: ""
-      type: pages
+      type: wiki
     values:
-      layout: single
+      excerpt: false
+      share: false
+      related: false
+      sidebar:
+        nav: wiki
+  - scope:
+      path: ""
+      type: news
+    values:
+      show_date: true
+      header:
+        overlay_image: "/static/splash/autumn-1.jpg"
+        overlay_filter: 0.2
+  - scope:
+      read_time: true
+      path: ""
+      type: planet
+    values:
       author_profile: true
+      show_date: true
+      read_time: true
+      header:
+        overlay_image: "/static/splash/galaxy-1.jpg"
+        overlay_filter: 0.2
